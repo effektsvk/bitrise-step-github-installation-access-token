@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 const { execSync } = require('child_process');
 
-const appId = process.env.app_id;
-const privateKey = process.env.private_key;
-const repositoryName = process.env.repository_name;
+const appId = process.env.APP_ID;
+const privateKey = process.env.PRIVATE_KEY;
+const repositoryName = process.env.REPOSITORY_NAME;
 
 if (!appId || !privateKey || !repositoryName) {
   console.error('App ID, Private Key, or Repository Name is not set. Please provide all required inputs.');
