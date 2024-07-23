@@ -72,7 +72,7 @@ toolkit:
 
 
 inputs:
-  - app_id:
+  - APP_ID:
     opts:
       title: "App ID"
       summary: App ID
@@ -80,7 +80,7 @@ inputs:
         GitHub App ID
       is_expand: false
       is_required: true
-  - private_key:
+  - PRIVATE_KEY:
     opts:
       title: "Private Key"
       summary: Private Key
@@ -88,7 +88,7 @@ inputs:
         GitHub App Private Key
       is_required: true
       is_sensitive: true
-  - repository_name:
+  - REPO_NAME:
     opts:
       title: "Repository Org and Name"
       summary: Repository Organization and Name
@@ -98,9 +98,8 @@ inputs:
       is_required: true
 
 outputs:
-  - access_token:
+  - GITHUB_ACCESS_TOKEN:
     opts:
-      title: "Access Token"
-      summary: Access Token
-      description: |
-        Access Token
+      title: "GitHub Access Token"
+      summary: "The generated GitHub access token"
+      description: "The access token generated for the GitHub App installation"

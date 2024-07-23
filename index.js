@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken');
+const { execSync } = require('child_process');
 
 const appId = process.env.app_id;
 const privateKey = process.env.private_key;
 const repositoryName = process.env.repository_name;
 
-if (!appId || !privateKey) {
-  console.error('App ID or Private Key is not set. Please provide both inputs.');
+if (!appId || !privateKey || !repositoryName) {
+  console.error('App ID, Private Key, or Repository Name is not set. Please provide all required inputs.');
   process.exit(1);
 }
 
@@ -20,8 +21,7 @@ async function generateJWTandGetToken() {
 
     const token = jwt.sign(payload, privateKey, { algorithm: 'RS256' });
 
-    // get Installation ID
-
+    // Get Installation ID
     const installationIdResponse = await fetch(`https://api.github.com/repos/${repositoryName}/installation`, {
       method: 'GET',
       headers: {
@@ -57,9 +57,9 @@ async function generateJWTandGetToken() {
     const data = await response.json();
     const accessToken = data.token;
 
-    // Output the access token
-    console.log(`::set-output name=access_token::${accessToken}`);
-    console.log('Access token generated successfully.');
+    // Use envman to set the access token as an environment variable
+    execSync(`envman add --key GITHUB_ACCESS_TOKEN --value "${accessToken}"`);
+    console.log('Access token generated and saved to GITHUB_ACCESS_TOKEN environment variable.');
 
   } catch (error) {
     console.error('Error generating access token:', error.message);

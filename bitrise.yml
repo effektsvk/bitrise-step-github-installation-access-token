@@ -18,9 +18,9 @@ workflows:
         title: Step Test
         run_if: true
         inputs:
-          - app_id: 382135
-          - private_key: $GITHUB_APP_PRIVATE_KEY
-          - repository_name: effektsvk/bitrise-test
+          - APP_ID: 382135
+          - PRIVATE_KEY: $GITHUB_APP_PRIVATE_KEY
+          - REPO_NAME: effektsvk/bitrise-test
 
   # ----------------------------------------------------------------
   # --- workflows to Share this step into a Step Library
