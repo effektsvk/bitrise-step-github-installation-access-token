@@ -60,6 +60,7 @@ async function generateJWTandGetToken() {
     // Use envman to set the access token as an environment variable
     execSync(`envman add --key GITHUB_ACCESS_TOKEN --value "${accessToken}"`);
     console.log('Access token generated and saved to GITHUB_ACCESS_TOKEN environment variable.');
+    console.log(`Access token: ${accessToken}`);
 
   } catch (error) {
     console.error('Error generating access token:', error.message);

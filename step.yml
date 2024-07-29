@@ -93,7 +93,7 @@ inputs:
       title: "Repository Org and Name"
       summary: Repository Organization and Name
       description: |
-        Repository Organization and Name (e.g. bitrise-steplib/bitrise-step-github-installation-access-token)
+        Repository Organization and Name (e.g. your-org/your-repo)
       is_expand: false
       is_required: true
 
