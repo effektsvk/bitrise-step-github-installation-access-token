@@ -18,7 +18,7 @@ function parseGitUrl(url) {
   } else if (httpsRegex.test(url)) {
     [, host, owner, repo] = url.match(httpsRegex);
   } else {
-    throw new Error('Invalid Git URL format');
+    throw new Error('Invalid Git URL format, URL: ' + url);
   }
 
   return { host, owner, repo };
