@@ -3,12 +3,27 @@ const { execSync } = require('child_process');
 
 const appId = process.env.APP_ID;
 const privateKey = process.env.PRIVATE_KEY;
-const repositoryName = process.env.REPO_NAME;
+const repositoryUrl = process.env.REPO_URL;
 
-if (!appId || !privateKey || !repositoryName) {
-  console.error('App ID, Private Key, or Repository Name is not set. Please provide all required inputs.');
-  process.exit(1);
+function parseGitUrl(url) {
+  let owner, repo, host;
+
+  // SSH URL format
+  const sshRegex = /^git@([^:]+):([^/]+)\/(.+)\.git$/;
+  // HTTPS URL format
+  const httpsRegex = /^https?:\/\/([^/]+)\/([^/]+)\/(.+)\.git$/;
+
+  if (sshRegex.test(url)) {
+    [, host, owner, repo] = url.match(sshRegex);
+  } else if (httpsRegex.test(url)) {
+    [, host, owner, repo] = url.match(httpsRegex);
+  } else {
+    throw new Error('Invalid Git URL format');
+  }
+
+  return { host, owner, repo };
 }
+
 
 async function generateJWTandGetToken() {
   try {
@@ -21,8 +36,10 @@ async function generateJWTandGetToken() {
 
     const token = jwt.sign(payload, privateKey, { algorithm: 'RS256' });
 
+    const { owner, repo } = parseGitUrl(repositoryUrl);
+
     // Get Installation ID
-    const installationIdResponse = await fetch(`https://api.github.com/repos/${repositoryName}/installation`, {
+    const installationIdResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/installation`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,

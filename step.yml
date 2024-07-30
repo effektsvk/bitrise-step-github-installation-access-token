@@ -88,12 +88,12 @@ inputs:
         GitHub App Private Key
       is_required: true
       is_sensitive: true
-  - REPO_NAME: $BITRISEIO_GIT_REPOSITORY_OWNER/$BITRISEIO_GIT_REPOSITORY_SLUG
+  - REPO_URL: $GIT_REPOSITORY_URL
     opts:
-      title: "Repository Org and Name"
-      summary: Repository Organization and Name
+      title: "Repository URL"
+      summary: Repository URL
       description: |
-        Repository Organization and Name (e.g. your-org/your-repo)
+        Repository URL (e.g. https://github.com/your-org/your-repo)
       is_expand: false
       is_required: true
 
