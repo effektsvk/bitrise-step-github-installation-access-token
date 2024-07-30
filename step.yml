@@ -92,7 +92,7 @@ inputs:
       title: "Repository Owner"
       summary: Repository Owner
       is_required: true
-  - REPO_OWNER: $BITRISEIO_GIT_REPOSITORY_SLUG
+  - REPO_SLUG: $BITRISEIO_GIT_REPOSITORY_SLUG
     opts:
       title: "Repository Name"
       summary: Repository Name
