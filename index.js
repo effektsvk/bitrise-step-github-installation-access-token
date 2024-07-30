@@ -18,6 +18,7 @@ async function generateJWTandGetToken() {
     const token = jwt.sign(payload, privateKey, { algorithm: 'RS256' });
 
     // Get Installation ID
+    console.log(`Getting installation ID for ${owner}/${repo}`);
     const installationIdResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/installation`, {
       method: 'GET',
       headers: {
@@ -58,6 +59,7 @@ async function generateJWTandGetToken() {
     console.log('Access token generated and saved to GITHUB_ACCESS_TOKEN environment variable.');
   } catch (error) {
     console.error('Error generating access token:', error.message);
+    console.error(error.stack);
     process.exit(1);
   }
 }

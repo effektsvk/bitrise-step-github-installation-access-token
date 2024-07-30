@@ -20,7 +20,8 @@ workflows:
         inputs:
           - APP_ID: 382135
           - PRIVATE_KEY: $GITHUB_APP_PRIVATE_KEY
-          - REPO_NAME: effektsvk/bitrise-test
+          - REPO_OWNER: effektsvk
+          - REPO_SLUG: bitrise-test
 
   # ----------------------------------------------------------------
   # --- workflows to Share this step into a Step Library
