@@ -78,7 +78,6 @@ inputs:
       summary: App ID
       description: |
         GitHub App ID
-      is_expand: false
       is_required: true
   - PRIVATE_KEY:
     opts:
@@ -88,13 +87,15 @@ inputs:
         GitHub App Private Key
       is_required: true
       is_sensitive: true
-  - REPO_URL: $GIT_REPOSITORY_URL
+  - REPO_OWNER: $BITRISEIO_GIT_REPOSITORY_OWNER
     opts:
-      title: "Repository URL"
-      summary: Repository URL
-      description: |
-        Repository URL (e.g. https://github.com/your-org/your-repo)
-      is_expand: false
+      title: "Repository Owner"
+      summary: Repository Owner
+      is_required: true
+  - REPO_OWNER: $BITRISEIO_GIT_REPOSITORY_SLUG
+    opts:
+      title: "Repository Name"
+      summary: Repository Name
       is_required: true
 
 outputs:
